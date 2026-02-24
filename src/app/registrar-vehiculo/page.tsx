@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import Section from "@/components/ui/Section";
 import Card from "@/components/ui/Card";
@@ -10,6 +10,11 @@ import Link from "next/link";
 export const dynamic = 'force-dynamic';
 
 export default function RegistrarVehiculoPage() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   const [plate, setPlate] = useState("");
   const [email, setEmail] = useState("");
   const [city, setCity] = useState("Quito");
@@ -73,7 +78,13 @@ export default function RegistrarVehiculoPage() {
   };
 
   return (
-    <main className="bg-white min-h-screen">
+    <>
+      {!isClient ? (
+        <div className="flex items-center justify-center min-h-screen">
+          <p className="text-gray-500">Cargando...</p>
+        </div>
+      ) : (
+        <main className="bg-white min-h-screen">
       <Section className="py-16">
         <h1 className="text-4xl font-bold mb-4">
           Activa tu monitoreo vehicular
@@ -212,6 +223,8 @@ export default function RegistrarVehiculoPage() {
           </div>
         </Section>
       )}
-    </main>
+        </main>
+      )}
+    </>
   );
 }
