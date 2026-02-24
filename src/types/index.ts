@@ -13,6 +13,7 @@ export interface Vehicle {
   userId: string
   plate: string
   type: 'auto' | 'moto' | 'camioneta' | 'taxi' | 'otro'
+  city: string
   brand?: string
   model?: string
   year?: number

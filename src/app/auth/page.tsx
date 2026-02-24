@@ -8,15 +8,13 @@ import Navbar from '@/components/shared/Navbar'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
 import Card from '@/components/ui/Card'
-import { Shield, Mail, Lock } from 'lucide-react'
+import { Shield } from 'lucide-react'
 
 export default function AuthPage() {
-  const [isLogin, setIsLogin] = useState(true)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [displayName, setDisplayName] = useState('')
   const [loading, setLoading] = useState(false)
-  const { signIn, signUp } = useAuth()
+  const { signIn } = useAuth()
   const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -24,13 +22,8 @@ export default function AuthPage() {
     setLoading(true)
 
     try {
-      if (isLogin) {
-        await signIn(email, password)
-        router.push('/dashboard')
-      } else {
-        await signUp(email, password, displayName)
-        router.push('/dashboard')
-      }
+      await signIn(email, password)
+      router.push('/dashboard')
     } catch (error) {
       console.error('Auth error:', error)
     } finally {
@@ -51,28 +44,15 @@ export default function AuthPage() {
               </div>
             </Link>
             <h1 className="text-3xl font-bold mb-2">
-              {isLogin ? 'Bienvenido de vuelta' : 'Crea tu cuenta'}
+              Bienvenido de vuelta
             </h1>
             <p className="text-gray-400">
-              {isLogin
-                ? 'Ingresa tus credenciales para continuar'
-                : 'Regístrate para acceder a todas las funciones'}
+              Ingresa tus credenciales para continuar
             </p>
           </div>
 
           <Card className="p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
-              {!isLogin && (
-                <Input
-                  label="Nombre completo"
-                  type="text"
-                  value={displayName}
-                  onChange={(e) => setDisplayName(e.target.value)}
-                  placeholder="Tu nombre"
-                  required
-                />
-              )}
-
               <Input
                 label="Correo electrónico"
                 type="email"
@@ -89,36 +69,31 @@ export default function AuthPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 required
-                helperText={
-                  !isLogin ? 'Mínimo 6 caracteres' : undefined
-                }
               />
 
-              {isLogin && (
-                <div className="flex items-center justify-end">
-                  <Link
-                    href="/recuperar-password"
-                    className="text-sm text-vyntra-blue hover:text-vyntra-blue-light"
-                  >
-                    ¿Olvidaste tu contraseña?
-                  </Link>
-                </div>
-              )}
+              <div className="flex items-center justify-end">
+                <Link
+                  href="/recuperar-password"
+                  className="text-sm text-vyntra-blue hover:text-vyntra-blue-light"
+                >
+                  ¿Olvidaste tu contraseña?
+                </Link>
+              </div>
 
               <Button type="submit" fullWidth loading={loading}>
-                {isLogin ? 'Iniciar sesión' : 'Crear cuenta'}
+                Iniciar sesión
               </Button>
             </form>
 
             <div className="mt-6 pt-6 border-t border-white/10 text-center">
               <p className="text-sm text-gray-400">
-                {isLogin ? '¿No tienes cuenta?' : '¿Ya tienes cuenta?'}{' '}
-                <button
-                  onClick={() => setIsLogin(!isLogin)}
+                ¿No tienes cuenta?{' '}
+                <Link
+                  href="/registro"
                   className="text-vyntra-blue hover:text-vyntra-blue-light font-semibold"
                 >
-                  {isLogin ? 'Regístrate' : 'Inicia sesión'}
-                </button>
+                  Regístrate
+                </Link>
               </p>
             </div>
           </Card>

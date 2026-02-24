@@ -62,8 +62,12 @@ export function useVehicles() {
     }
   }
 
-  const addVehicle = async (vehicleData: Omit<Vehicle, 'id' | 'userId' | 'createdAt' | 'updatedAt' | 'lastDigit'>) => {
-    if (!user) {
+  const addVehicle = async (
+    vehicleData: Omit<Vehicle, 'id' | 'userId' | 'createdAt' | 'updatedAt' | 'lastDigit'>,
+    options?: { userId?: string }
+  ) => {
+    const ownerId = options?.userId || user?.uid
+    if (!ownerId) {
       toast.error('Debes iniciar sesión')
       return
     }
@@ -73,7 +77,7 @@ export function useVehicles() {
       
       const docRef = await addDoc(collection(db, 'vehicles'), {
         ...vehicleData,
-        userId: user.uid,
+        userId: ownerId,
         lastDigit,
         createdAt: Timestamp.now(),
         updatedAt: Timestamp.now(),
@@ -82,7 +86,7 @@ export function useVehicles() {
       const newVehicle: Vehicle = {
         id: docRef.id,
         ...vehicleData,
-        userId: user.uid,
+        userId: ownerId,
         lastDigit,
         createdAt: new Date(),
         updatedAt: new Date(),

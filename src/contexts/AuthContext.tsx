@@ -18,7 +18,7 @@ import toast from 'react-hot-toast'
 interface AuthContextType {
   user: User | null
   loading: boolean
-  signUp: (email: string, password: string, displayName: string) => Promise<void>
+  signUp: (email: string, password: string, displayName: string) => Promise<FirebaseUser>
   signIn: (email: string, password: string) => Promise<void>
   logout: () => Promise<void>
   resetPassword: (email: string) => Promise<void>
@@ -100,6 +100,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       })
 
       toast.success('¡Cuenta creada exitosamente!')
+      return firebaseUser
     } catch (error: any) {
       console.error('Error signing up:', error)
       toast.error(error.message || 'Error al crear la cuenta')
