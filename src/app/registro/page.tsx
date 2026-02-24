@@ -206,10 +206,10 @@ function RegisterContent() {
                         key={type.value}
                         type="button"
                         onClick={() => setVehicleType(type.value)}
-                        className={`p-4 rounded-xl border-2 transition-all ${
+                        className={`p-4 rounded-xl border-2 transition-all shadow-md ${
                           vehicleType === type.value
                             ? 'border-vyntra-blue bg-vyntra-blue/10'
-                            : 'border-white/10 hover:border-white/20'
+                            : 'border-white/10 hover:border-white/20 bg-white/5'
                         }`}
                       >
                         <div className="text-2xl mb-2">{type.icon}</div>
@@ -220,8 +220,8 @@ function RegisterContent() {
                 </div>
 
                 <div className="bg-vyntra-blue/10 border border-vyntra-blue/20 rounded-xl p-4">
-                  <h4 className="font-semibold mb-2 text-vyntra-blue">¿Que recibiras?</h4>
-                  <ul className="space-y-2 text-sm text-gray-300">
+                  <h4 className="font-semibold mb-2 text-ink">¿Que recibiras?</h4>
+                  <ul className="space-y-2 text-sm text-ink-muted">
                     <li className="flex items-center">
                       <CheckCircle className="w-4 h-4 text-vyntra-blue mr-2 flex-shrink-0" />
                       Alertas de vencimiento de matricula
