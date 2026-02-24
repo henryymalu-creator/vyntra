@@ -20,9 +20,14 @@ interface Vehicle {
 }
 
 export default function MiVehiculoPage() {
+  const [isClient, setIsClient] = useState(false);
   const [email, setEmail] = useState("");
   const [vehicle, setVehicle] = useState<Vehicle | null>(null);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   const [searched, setSearched] = useState(false);
   const [isPremium] = useState(false); // Simulado - cambiar cuando tengas auth real
 
@@ -57,7 +62,13 @@ export default function MiVehiculoPage() {
   };
 
   return (
-    <main className="bg-white text-gray-900 min-h-screen">
+    <>
+      {!isClient ? (
+        <div className="flex items-center justify-center min-h-screen">
+          <p className="text-gray-500">Cargando...</p>
+        </div>
+      ) : (
+        <main className="bg-white text-gray-900 min-h-screen">
       {/* HEADER OSCURO */}
       <div className="bg-vyntra-primary text-white px-8 py-6 md:py-10">
         <div className="max-w-6xl mx-auto">
@@ -175,6 +186,8 @@ export default function MiVehiculoPage() {
           </div>
         </Section>
       )}
-    </main>
+        </main>
+      )}
+    </>
   );
 }
