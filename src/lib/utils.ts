@@ -41,8 +41,8 @@ export function getLastDigitFromPlate(plate: string): number {
  * Validate Ecuador vehicle plate format
  */
 export function isValidPlate(plate: string): boolean {
-  // Format: ABC-1234 or ABC1234
-  const regex = /^[A-Z]{3}-?\d{3,4}$/i
+  // Formats: ABC-1234 or ABC1234, and IK-578A or IK578A
+  const regex = /^([A-Z]{3}-?\d{3,4}|[A-Z]{2}-?\d{3}[A-Z])$/i
   return regex.test(plate.toUpperCase())
 }
 
@@ -51,8 +51,13 @@ export function isValidPlate(plate: string): boolean {
  */
 export function formatPlate(plate: string): string {
   const cleaned = plate.toUpperCase().replace(/[^A-Z0-9]/g, '')
-  if (cleaned.length >= 6) {
-    return `${cleaned.slice(0, 3)}-${cleaned.slice(3)}`
+  const prefixMatch = cleaned.match(/^[A-Z]{2,3}/)
+  if (prefixMatch) {
+    const prefix = prefixMatch[0]
+    const rest = cleaned.slice(prefix.length)
+    if (rest.length >= 3) {
+      return `${prefix}-${rest}`
+    }
   }
   return cleaned
 }

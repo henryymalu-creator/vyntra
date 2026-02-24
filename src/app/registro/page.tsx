@@ -64,7 +64,7 @@ function RegisterContent() {
     }
 
     if (!isValidPlate(plate)) {
-      toast.error('Formato de placa invalido. Use formato ABC-1234')
+      toast.error('Formato de placa invalido. Use ABC-1234 o IK-578A')
       return
     }
 
@@ -193,7 +193,7 @@ function RegisterContent() {
                   placeholder="ABC-1234"
                   maxLength={8}
                   required
-                  helperText="Formato: ABC-1234"
+                  helperText="Formato: ABC-1234 o IK-578A"
                 />
 
                 <div>
