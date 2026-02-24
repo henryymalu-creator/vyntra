@@ -42,13 +42,32 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
         // Get additional user data from Firestore
-        const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid))
-        const userData = userDoc.data()
+        const userRef = doc(db, 'users', firebaseUser.uid)
+        const userDoc = await getDoc(userRef)
+        let userData = userDoc.data()
+
+        if (!userDoc.exists()) {
+          const fallbackName = firebaseUser.displayName || firebaseUser.email?.split('@')[0] || 'Usuario'
+          userData = {
+            email: firebaseUser.email,
+            displayName: fallbackName,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+          }
+
+          await setDoc(userRef, userData)
+        }
+
+        const displayName =
+          userData?.displayName ||
+          firebaseUser.displayName ||
+          firebaseUser.email?.split('@')[0] ||
+          'Usuario'
 
         setUser({
           uid: firebaseUser.uid,
           email: firebaseUser.email,
-          displayName: firebaseUser.displayName,
+          displayName,
           photoURL: firebaseUser.photoURL,
           createdAt: userData?.createdAt?.toDate() || new Date(),
         })
