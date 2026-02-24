@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { supabase } from "@/lib/supabase";
+import { getSupabaseClient } from "@/lib/supabase";
 import Section from "@/components/ui/Section";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
@@ -43,6 +43,13 @@ export default function RegistrarVehiculoPage() {
     e.preventDefault();
     setLoading(true);
     setError("");
+
+    const supabase = getSupabaseClient();
+    if (!supabase) {
+      setError("Supabase no esta configurado. Intenta mas tarde.");
+      setLoading(false);
+      return;
+    }
 
     try {
       const cleanPlate = plate.toUpperCase().replace(/\s/g, "");

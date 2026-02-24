@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
+import { getSupabaseClient } from "@/lib/supabase";
 import Section from "@/components/ui/Section";
 import StatusCard from "@/components/dashboard/StatusCard";
 import NextEventCard from "@/components/dashboard/NextEventCard";
@@ -41,6 +41,13 @@ export default function MiVehiculoPage() {
   const handleSearch = async () => {
     setLoading(true);
     setSearched(true);
+
+    const supabase = getSupabaseClient();
+    if (!supabase) {
+      setVehicle(null);
+      setLoading(false);
+      return;
+    }
 
     try {
       const { data, error } = await supabase
