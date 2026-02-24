@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  Vyntra – Protección Inteligente para tu Vehículo           ║
+  ║  Autor / Creador: Henry Zavala                               ║
+  ║  © 2026 Henry Zavala. Todos los derechos reservados.         ║
+  ║  Quito, Ecuador                                              ║
+  ║  Este código fuente y su diseño son obra original del autor. ║
+  ║  Queda prohibida su reproducción sin autorización expresa.   ║
+  ╚══════════════════════════════════════════════════════════════╝
+-->
+<html lang="es" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="author" content="Henry Zavala">
+<meta name="copyright" content="© 2026 Henry Zavala — Vyntra">
+<meta name="description" content="Vyntra – Protección inteligente para tu vehículo en Quito. Consulta normativa, activa alertas y recibe asesoría especializada en tránsito.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vyntra – Protección Inteligente para tu Vehículo</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          'sans': ['Inter', 'sans-serif'],
+        },
+        colors: {
+          'vyntra-blue': '#3B82F6',
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+</style>
+</head>
+<body class="bg-black text-white antialiased">
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        </div>
+        <span class="text-xl font-bold tracking-tight">Vyntra</span>
+      </div>
+      
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-1">
+        <a href="#funciona" class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition">Cómo funciona</a>
+        <a href="#informacion" class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition">Información</a>
+        <a href="#mapas" class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition">Mapas</a>
+        <a href="#defensa" class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition">Defensa Legal</a>
+        <a href="#premium" class="px-4 py-2 ml-2 text-sm font-semibold bg-blue-600 hover:bg-blue-700 rounded-lg transition">Premium</a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <button class="md:hidden p-2 rounded-lg hover:bg-white/5" onclick="toggleMobileMenu()">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="hidden md:hidden bg-neutral-950/95 backdrop-blur-xl border-t border-white/5">
+    <div class="px-4 py-4 space-y-2">
+      <a href="#funciona" class="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg">Cómo funciona</a>
+      <a href="#informacion" class="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg">Información</a>
+      <a href="#mapas" class="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg">Mapas</a>
+      <a href="#defensa" class="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg">Defensa Legal</a>
+      <a href="#premium" class="block px-4 py-3 text-sm font-semibold bg-blue-600 hover:bg-blue-700 rounded-lg text-center">Premium</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO SECTION ═══ -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+  <!-- Grid Background -->
+  <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:64px_64px]"></div>
+  
+  <!-- Gradient Glow -->
+  <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/10 rounded-full blur-3xl"></div>
+  
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-8 py-24 lg:py-32">
+    <div class="max-w-3xl">
+      <!-- Badge -->
+      <div class="inline-flex items-center px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-sm font-medium text-blue-400 mb-8">
+        <span class="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse"></span>
+        Quito, Ecuador
+      </div>
+
+      <!-- Main Heading -->
+      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-none mb-6">
+        Evita multas <br>
+        <span class="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent">antes de que ocurran</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-xl text-gray-400 mb-10 max-w-2xl leading-relaxed">
+        Consulta normativa, activa alertas y recibe asesoría especializada en tránsito en Quito.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="#registro" class="inline-flex items-center justify-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition transform hover:scale-105 shadow-lg shadow-blue-500/25">
+          Registrar mi vehículo
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+        <a href="#informacion" class="inline-flex items-center justify-center px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold rounded-xl transition">
+          Consultar trámites
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CÓMO FUNCIONA ═══ -->
+<section id="funciona" class="py-24 bg-neutral-950">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">¿Cómo funciona?</h2>
+      <p class="text-gray-400 max-w-2xl mx-auto">Protección vehicular inteligente en 3 pasos simples</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
+      <!-- Step 1 -->
+      <div class="relative">
+        <div class="flex flex-col items-center text-center">
+          <div class="w-16 h-16 bg-blue-500/10 border border-blue-500/20 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">1. Registra tu placa</h3>
+          <p class="text-gray-400 leading-relaxed">Ingresa la placa de tu vehículo de forma segura y privada</p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="relative">
+        <div class="flex flex-col items-center text-center">
+          <div class="w-16 h-16 bg-blue-500/10 border border-blue-500/20 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">2. Recibe alertas automáticas</h3>
+          <p class="text-gray-400 leading-relaxed">Te notificamos sobre vencimientos, restricciones y normativa relevante</p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="relative">
+        <div class="flex flex-col items-center text-center">
+          <div class="w-16 h-16 bg-blue-500/10 border border-blue-500/20 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">3. Actúa antes de pagar multas</h3>
+          <p class="text-gray-400 leading-relaxed">Evita sanciones con información anticipada y acciones preventivas</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CENTRO DE INFORMACIÓN ═══ -->
+<section id="informacion" class="py-24 bg-black">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">Centro de Información</h2>
+      <p class="text-gray-400 max-w-2xl mx-auto">Todo lo que necesitas saber sobre tránsito en Quito</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Card 1 -->
+      <div class="group bg-neutral-950/50 hover:bg-neutral-950 border border-white/5 hover:border-blue-500/30 rounded-2xl p-6 transition cursor-pointer">
+        <div class="mb-4">
+          <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center">
+            <span class="text-2xl">🚦</span>
+          </div>
+        </div>
+        <h3 class="text-lg font-bold mb-2">Restricción vehicular</h3>
+        <p class="text-sm text-gray-400 mb-4">Pico y placa actualizado</p>
+        <a href="#mapas" class="inline-flex items-center text-sm font-medium text-blue-400 hover:text-blue-300">
+          Ver guía completa
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="group bg-neutral-950/50 hover:bg-neutral-950 border border-white/5 hover:border-blue-500/30 rounded-2xl p-6 transition cursor-pointer">
+        <div class="mb-4">
+          <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center">
+            <span class="text-2xl">📅</span>
+          </div>
+        </div>
+        <h3 class="text-lg font-bold mb-2">Calendario matrícula</h3>
+        <p class="text-sm text-gray-400 mb-4">Fechas según último dígito</p>
+        <a href="#registro" class="inline-flex items-center text-sm font-medium text-blue-400 hover:text-blue-300">
+          Activar alertas
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="group bg-neutral-950/50 hover:bg-neutral-950 border border-white/5 hover:border-blue-500/30 rounded-2xl p-6 transition cursor-pointer">
+        <div class="mb-4">
+          <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center">
+            <span class="text-2xl">💸</span>
+          </div>
+        </div>
+        <h3 class="text-lg font-bold mb-2">Multas y valores</h3>
+        <p class="text-sm text-gray-400 mb-4">Tarifario completo</p>
+        <a href="#informacion" class="inline-flex items-center text-sm font-medium text-blue-400 hover:text-blue-300">
+          Consultar valores
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="group bg-neutral-950/50 hover:bg-neutral-950 border border-white/5 hover:border-blue-500/30 rounded-2xl p-6 transition cursor-pointer">
+        <div class="mb-4">
+          <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center">
+            <span class="text-2xl">🔍</span>
+          </div>
+        </div>
+        <h3 class="text-lg font-bold mb-2">RTV</h3>
+        <p class="text-sm text-gray-400 mb-4">Revisión técnica vehicular</p>
+        <a href="#registro" class="inline-flex items-center text-sm font-medium text-blue-400 hover:text-blue-300">
+          Ver requisitos
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="group bg-neutral-950/50 hover:bg-neutral-950 border border-white/5 hover:border-blue-500/30 rounded-2xl p-6 transition cursor-pointer">
+        <div class="mb-4">
+          <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center">
+            <span class="text-2xl">🏢</span>
+          </div>
+        </div>
+        <h3 class="text-lg font-bold mb-2">Centros AMT</h3>
+        <p class="text-sm text-gray-400 mb-4">Ubicaciones y horarios</p>
+        <a href="#mapas" class="inline-flex items-center text-sm font-medium text-blue-400 hover:text-blue-300">
+          Ver en mapa
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="group bg-neutral-950/50 hover:bg-neutral-950 border border-white/5 hover:border-blue-500/30 rounded-2xl p-6 transition cursor-pointer">
+        <div class="mb-4">
+          <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center">
+            <span class="text-2xl">📋</span>
+          </div>
+        </div>
+        <h3 class="text-lg font-bold mb-2">Tarifarios</h3>
+        <p class="text-sm text-gray-400 mb-4">Costos de trámites</p>
+        <a href="#informacion" class="inline-flex items-center text-sm font-medium text-blue-400 hover:text-blue-300">
+          Ver detalle
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="group bg-neutral-950/50 hover:bg-neutral-950 border border-white/5 hover:border-blue-500/30 rounded-2xl p-6 transition cursor-pointer">
+        <div class="mb-4">
+          <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center">
+            <span class="text-2xl">🗺️</span>
+          </div>
+        </div>
+        <h3 class="text-lg font-bold mb-2">Mapas interactivos</h3>
+        <p class="text-sm text-gray-400 mb-4">Zonas, rutas y restricciones</p>
+        <a href="#mapas" class="inline-flex items-center text-sm font-medium text-blue-400 hover:text-blue-300">
+          Explorar mapas
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="group bg-neutral-950/50 hover:bg-neutral-950 border border-white/5 hover:border-blue-500/30 rounded-2xl p-6 transition cursor-pointer">
+        <div class="mb-4">
+          <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center">
+            <span class="text-2xl">📱</span>
+          </div>
+        </div>
+        <h3 class="text-lg font-bold mb-2">Notificaciones</h3>
+        <p class="text-sm text-gray-400 mb-4">Alertas inteligentes</p>
+        <a href="#premium" class="inline-flex items-center text-sm font-medium text-blue-400 hover:text-blue-300">
+          Activar Premium
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MAPAS ═══ -->
+<section id="mapas" class="py-24 bg-neutral-950">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">Todo Quito vial en un solo mapa</h2>
+      <p class="text-gray-400 max-w-2xl mx-auto">Visualiza restricciones, zonas y centros de atención geo-referenciados</p>
+    </div>
+
+    <!-- Map Container -->
+    <div class="bg-neutral-900/50 border border-white/5 rounded-2xl overflow-hidden">
+      <div class="aspect-video bg-gradient-to-br from-neutral-900 to-neutral-950 flex items-center justify-center">
+        <div class="text-center p-8">
+          <div class="w-20 h-20 bg-blue-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <svg class="w-10 h-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">Mapa interactivo de Quito</h3>
+          <p class="text-gray-400 mb-6 max-w-md mx-auto">Visualiza pico y placa, administraciones zonales, centros AMT y más con 700K+ visualizaciones</p>
+          <button class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 font-semibold rounded-xl transition">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            Cargar mapa
+          </button>
+        </div>
+      </div>
+
+      <!-- Map Actions -->
+      <div class="p-6 border-t border-white/5 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+          <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+          <span class="text-sm text-gray-400">Fuente: Google My Maps • AMT Quito</span>
+        </div>
+        <button class="inline-flex items-center px-4 py-2 text-sm font-medium text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 rounded-lg transition">
+          Recibir alertas de esta zona
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DEFENSA LEGAL ═══ -->
+<section id="defensa" class="py-24 bg-black">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-gradient-to-br from-blue-500/10 via-transparent to-blue-600/5 border border-blue-500/20 rounded-3xl p-8 lg:p-12">
+        <div class="flex items-start gap-6 mb-8">
+          <div class="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center flex-shrink-0">
+            <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+            </svg>
+          </div>
+          <div class="flex-1">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-4">¿Tienes un problema legal de tránsito?</h2>
+            <p class="text-lg text-gray-300 leading-relaxed">
+              Conectamos con abogados especializados en derecho de tránsito. Asesoría profesional para impugnaciones, recursos legales y defensa en procesos judiciales.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-6 mb-8">
+          <div class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <div>
+              <h4 class="font-semibold mb-1">Impugnaciones</h4>
+              <p class="text-sm text-gray-400">Multas injustas o incorrectas</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <div>
+              <h4 class="font-semibold mb-1">Recursos</h4>
+              <p class="text-sm text-gray-400">Apelaciones y revisiones</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <div>
+              <h4 class="font-semibold mb-1">Defensa</h4>
+              <p class="text-sm text-gray-400">Representación legal</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="inline-flex items-center px-8 py-4 bg-blue-600 hover:bg-blue-700 font-bold rounded-xl transition transform hover:scale-105">
+          Solicitar asesoría especializada
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PREMIUM ═══ -->
+<section id="premium" class="py-24 bg-neutral-950">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-sm font-medium text-blue-400 mb-6">
+        ✨ Próximamente en App
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">Beneficios Premium</h2>
+      <p class="text-gray-400 max-w-2xl mx-auto">Protección vehicular completa con tecnología de punta</p>
+    </div>
+
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-gradient-to-br from-blue-600/10 via-blue-500/5 to-transparent border border-blue-500/20 rounded-3xl p-8 lg:p-12">
+        <div class="grid sm:grid-cols-2 gap-6">
+          <!-- Feature 1 -->
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-bold mb-2">Alertas anticipadas</h4>
+              <p class="text-sm text-gray-400">Notificaciones antes de vencimientos y restricciones</p>
+            </div>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-bold mb-2">Historial del vehículo</h4>
+              <p class="text-sm text-gray-400">Registro completo de trámites y pagos</p>
+            </div>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-bold mb-2">Simulador de multas</h4>
+              <p class="text-sm text-gray-400">Calcula costos antes de que ocurran</p>
+            </div>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-bold mb-2">IA que traduce normativa</h4>
+              <p class="text-sm text-gray-400">Explicaciones claras de leyes complejas</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10 pt-8 border-t border-white/10">
+          <button class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-blue-600 hover:bg-blue-700 font-bold rounded-xl transition">
+            Próximamente en App
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ REGISTRO CTA ═══ -->
+<section id="registro" class="py-24 bg-black">
+  <div class="max-w-4xl mx-auto px-6 lg:px-8">
+    <div class="bg-gradient-to-br from-blue-600 via-blue-600 to-blue-700 rounded-3xl p-8 lg:p-16 text-center relative overflow-hidden">
+      <!-- Decorative elements -->
+      <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+      
+      <div class="relative">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Empieza ahora sin costo</h2>
+        <p class="text-lg text-blue-50 mb-10 max-w-2xl mx-auto">
+          Registra tu vehículo y recibe alertas inteligentes. Sin tarjeta de crédito.
+        </p>
+
+        <form class="max-w-md mx-auto" onsubmit="registerVehicle(event)">
+          <div class="flex flex-col sm:flex-row gap-3">
+            <input 
+              type="text" 
+              id="plateInput"
+              placeholder="Tu número de placa (ej: ABC-1234)" 
+              class="flex-1 px-6 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50"
+              maxlength="8"
+              required
+            >
+            <button 
+              type="submit"
+              class="px-8 py-4 bg-white text-blue-600 font-bold rounded-xl hover:bg-blue-50 transition transform hover:scale-105 whitespace-nowrap"
+            >
+              Registrar →
+            </button>
+          </div>
+          <p class="text-sm text-blue-100 mt-4">✓ Gratis • ✓ Sin tarjeta • ✓ Cancela cuando quieras</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="bg-neutral-950 border-t border-white/5">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+    <div class="grid md:grid-cols-4 gap-12 mb-12">
+      <!-- Brand -->
+      <div class="md:col-span-2">
+        <div class="flex items-center space-x-3 mb-4">
+          <div class="w-9 h-9 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <span class="text-xl font-bold">Vyntra</span>
+        </div>
+        <p class="text-gray-400 mb-6 max-w-sm leading-relaxed">
+          Protección inteligente para tu vehículo en Quito. Evita multas, mantente informado y conduce con tranquilidad.
+        </p>
+        <div class="flex items-center gap-4">
+          <a href="#" class="text-gray-400 hover:text-white transition">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <h4 class="font-bold mb-4">Plataforma</h4>
+        <ul class="space-y-3 text-sm text-gray-400">
+          <li><a href="#funciona" class="hover:text-white transition">Cómo funciona</a></li>
+          <li><a href="#informacion" class="hover:text-white transition">Centro de información</a></li>
+          <li><a href="#mapas" class="hover:text-white transition">Mapas</a></li>
+          <li><a href="#defensa" class="hover:text-white transition">Defensa legal</a></li>
+          <li><a href="#premium" class="hover:text-white transition">Premium</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <h4 class="font-bold mb-4">Legal</h4>
+        <ul class="space-y-3 text-sm text-gray-400">
+          <li><a href="#" class="hover:text-white transition">Términos de servicio</a></li>
+          <li><a href="#" class="hover:text-white transition">Política de privacidad</a></li>
+          <li><a href="#" class="hover:text-white transition">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="pt-8 border-t border-white/5">
+      <div class="bg-yellow-500/10 border border-yellow-500/20 rounded-xl p-6 mb-8">
+        <div class="flex items-start gap-3">
+          <svg class="w-6 h-6 text-yellow-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div class="text-sm text-yellow-200/90 leading-relaxed">
+            <strong class="font-bold">Importante:</strong> Vyntra NO está afiliado, asociado ni representa a la Agencia Metropolitana de Tránsito (AMT), Agencia Nacional de Tránsito (ANT) ni ninguna entidad gubernamental. Somos una plataforma privada independiente que facilita el acceso a información pública de tránsito. Toda la información oficial debe verificarse en los portales de las instituciones competentes.
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400">
+        <p>© 2026 <span class="font-semibold text-white">Vyntra</span> • Creado por Henry Zavala • Quito, Ecuador</p>
+        <p>Plataforma privada de información vehicular</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ SCRIPTS ═══ -->
+<script>
+// Mobile menu toggle
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  menu.classList.toggle('hidden');
+}
+
+// Vehicle registration form
+function registerVehicle(event) {
+  event.preventDefault();
+  const plate = document.getElementById('plateInput').value.trim().toUpperCase();
+  
+  if (plate.length < 6) {
+    alert('Por favor ingresa una placa válida');
+    return;
+  }
+  
+  // Success message
+  alert(`✅ ¡Registrado! Placa: ${plate}\n\nPróximamente recibirás alertas sobre:\n• Vencimiento de matrícula\n• Pico y placa\n• RTV\n• Multas pendientes`);
+  
+  // Reset form
+  document.getElementById('plateInput').value = '';
+}
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+      // Close mobile menu if open
+      document.getElementById('mobileMenu').classList.add('hidden');
+    }
+  });
+});
+
+// Navbar scroll effect
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+  const nav = document.querySelector('nav');
+  
+  if (currentScroll > 100) {
+    nav.classList.add('shadow-lg', 'shadow-black/20');
+  } else {
+    nav.classList.remove('shadow-lg', 'shadow-black/20');
+  }
+  
+  lastScroll = currentScroll;
+});
+</script>
+
+</body>
+</html>

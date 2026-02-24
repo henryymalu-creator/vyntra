@@ -1,0 +1,382 @@
+@import url('@/styles/tokens.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Paleta oficial - Vyntra 1.0 */
+  --color-navbar: #0F1F3D;
+  --color-hero: #1B3A6F;
+  --color-bg-main: #F4F6F8;
+  --color-surface: #FFFFFF;
+  --color-primary: #1B3A6F;
+  --color-success: #1FA37A;
+  --color-danger: #E63946;
+  --color-text-main: #111827;
+  --color-text-muted: #6B7280;
+  --color-border: #E5E7EB;
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  h1 {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--color-text-main);
+  }
+
+  h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--color-text-main);
+  }
+}
+
+@layer components {
+  /* ===== NAVBAR ===== */
+  .navbar-fixed {
+    @apply fixed top-0 left-0 right-0 z-50;
+    background: var(--color-navbar);
+    box-shadow: 0 6px 18px rgba(15, 31, 61, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* ===== HERO SECTION ===== */
+  .hero {
+    background: var(--color-hero);
+    color: #FFFFFF;
+  }
+
+  /* ===== SECTION MUTED (Fondo gris-azulado) ===== */
+  .section-muted {
+    background: var(--color-bg-main);
+  }
+
+  .section-maps {
+    background: var(--color-bg-main);
+  }
+
+  .text-ink {
+    color: var(--color-text-main);
+  }
+
+  .text-ink-muted {
+    color: var(--color-text-muted);
+  }
+
+  .text-ink-secondary {
+    color: var(--color-text-muted);
+  }
+
+  /* ===== STATUS CARDS ===== */
+  .status-card {
+    background: var(--color-surface);
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 10px 30px rgba(15, 31, 61, 0.06);
+    color: var(--color-text-main);
+    transition: box-shadow 200ms ease, transform 200ms ease;
+  }
+
+  .status-card:hover {
+    box-shadow: 0 14px 34px rgba(15, 31, 61, 0.08);
+    transform: translateY(-1px);
+  }
+
+  .status-card--success {
+    border-left: 4px solid var(--color-success);
+  }
+
+  .status-card--warning {
+    border-left: 4px solid var(--color-warning);
+  }
+
+  .status-card--danger {
+    border-left: 4px solid var(--color-danger);
+  }
+
+  .status-card-header {
+    @apply flex items-center justify-between mb-2;
+  }
+
+  .status-card-title {
+    @apply text-sm font-semibold;
+    color: var(--color-text-main);
+  }
+
+  .status-card-subtitle {
+    @apply text-xs;
+    color: var(--color-text-muted);
+  }
+
+  .status-panel {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(15, 31, 61, 0.06);
+  }
+
+  /* ===== STATUS ICON ===== */
+  .status-icon {
+    @apply text-xl font-bold;
+  }
+
+  .status-icon--success {
+    color: var(--color-success);
+  }
+
+  .status-icon--warning {
+    color: var(--color-warning);
+  }
+
+  .status-icon--danger {
+    color: var(--color-danger);
+  }
+
+  /* ===== ALERT CARD ===== */
+  .alert-card {
+    @apply p-4 rounded-lg border flex items-start gap-3;
+    background: rgba(230, 57, 70, 0.08);
+    border-color: rgba(230, 57, 70, 0.25);
+  }
+
+  .alert-card-icon {
+    @apply w-5 h-5 flex-shrink-0 mt-0.5;
+    color: var(--color-danger);
+  }
+
+  .alert-card-label {
+    @apply text-xs font-bold uppercase tracking-wide;
+    color: var(--color-danger);
+  }
+
+  .alert-card-text {
+    @apply text-sm;
+    color: var(--color-text-main);
+  }
+
+  /* ===== REGULAR CARDS ===== */
+  .card-premium {
+    background: var(--color-surface);
+    border-radius: 18px;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 10px 30px rgba(15, 31, 61, 0.06);
+    color: var(--color-text-main);
+  }
+
+  .card-premium-light {
+    background: #FFFFFF;
+    border-radius: 14px;
+    border: 1px solid rgba(148, 163, 184, 0.4);
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.28);
+    transition: all 250ms ease;
+  }
+
+  .card-premium-light:hover {
+    box-shadow: 0 24px 56px rgba(15, 23, 42, 0.18);
+    transform: translateY(-2px);
+  }
+
+  /* Card Estados */
+  .card-success {
+    border-color: rgba(31, 163, 122, 0.9);
+  }
+  .card-warning {
+    border-color: rgba(244, 162, 97, 0.9);
+  }
+  .card-danger {
+    border-color: rgba(230, 57, 70, 0.9);
+  }
+
+  /* ===== BUTTONS ===== */
+  .btn-primary {
+    background: linear-gradient(135deg, var(--color-brand), #2563EB);
+    color: white;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 0.65rem 1.6rem;
+    box-shadow: 0 10px 25px rgba(27, 58, 111, 0.5);
+    transition: all 150ms ease;
+  }
+  
+  .btn-primary:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 18px 35px rgba(27, 58, 111, 0.7);
+  }
+
+  .btn-secondary-light {
+    background: transparent;
+    border: 1px solid rgba(148, 163, 184, 0.4);
+    color: var(--color-text-dark);
+    transition: all 150ms ease;
+  }
+
+  .btn-secondary-light:hover {
+    background: rgba(27, 58, 111, 0.08);
+    border-color: rgba(27, 58, 111, 0.6);
+    color: var(--color-brand);
+  }
+
+  /* ===== MAPS SECTION (Night Urban) ===== */
+  .maps-section {
+    background: #F3F4F6;
+  }
+
+  .maps-card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    border: 1px solid rgba(148, 163, 184, 0.4);
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.28);
+    transition: all 200ms ease;
+  }
+
+  .maps-card:hover {
+    box-shadow: 0 24px 56px rgba(15, 23, 42, 0.25);
+    transform: translateY(-3px);
+  }
+
+  .maps-card-icon {
+    background: rgba(27, 58, 111, 0.18);
+    color: #1B3A6F;
+  }
+
+  .maps-card-link {
+    color: #1B3A6F;
+  }
+
+  .maps-card-link:hover {
+    color: #0F1F3D;
+  }
+
+  .btn-primary-hero {
+    background: linear-gradient(135deg, var(--color-brand), var(--color-primary));
+    color: white;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 0.75rem 1.5rem;
+    box-shadow: 0 8px 20px rgba(27, 58, 111, 0.4);
+    transition: all 200ms ease;
+  }
+
+  .btn-primary-hero:hover {
+    filter: brightness(1.08);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(27, 58, 111, 0.55);
+  }
+
+  .btn-primary-hero:active {
+    transform: translateY(0);
+  }
+
+  .btn-secondary-light {
+    background: transparent;
+    color: var(--color-brand);
+    border: 2px solid var(--color-brand);
+    border-radius: 10px;
+    padding: 0.65rem 1.4rem;
+    font-weight: 600;
+    transition: all 200ms ease;
+  }
+
+  .btn-secondary-light:hover {
+    background: var(--color-brand);
+    color: white;
+    transform: translateY(-1px);
+  }
+
+  /* ===== BADGES ===== */
+  .badge-success {
+    background: rgba(31, 163, 122, 0.15);
+    color: var(--color-success);
+  }
+  .badge-warning {
+    background: rgba(244, 162, 97, 0.15);
+    color: var(--color-warning);
+  }
+  .badge-danger {
+    background: rgba(230, 57, 70, 0.15);
+    color: var(--color-danger);
+  }
+
+  .badge-tech {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full;
+    background: rgba(27, 58, 111, 0.1);
+    border: 1px solid rgba(27, 58, 111, 0.25);
+    color: var(--color-brand);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  /* ===== TRUST INDICATOR ===== */
+  .trust-indicator {
+    @apply flex items-center gap-3;
+  }
+
+  .trust-icon-box {
+    @apply w-10 h-10 rounded-lg flex items-center justify-center;
+    background: rgba(27, 58, 111, 0.08);
+    border: 1px solid rgba(27, 58, 111, 0.2);
+  }
+
+  .trust-label {
+    @apply text-xs uppercase tracking-wide font-semibold;
+    color: var(--color-text-secondary);
+  }
+
+  .trust-value {
+    @apply text-sm font-bold;
+    color: var(--color-text-dark);
+  }
+
+  /* Texto muted */
+  .text-muted {
+    color: var(--color-text-muted);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+}
+
+/* Custom scrollbar - Tema oscuro */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
